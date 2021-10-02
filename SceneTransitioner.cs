@@ -4,6 +4,9 @@ namespace SxGD
 {
     public class SceneTransitioner : CanvasLayer
     {
+        [Signal]
+        public delegate void animation_finished();
+
         [OnReady("Overlay")]
         private ColorRect _Overlay;
         [OnReady]
@@ -44,6 +47,20 @@ namespace SxGD
             await ToSignal(_AnimationPlayer, "animation_finished");
             GetTree().ChangeSceneTo(scene);
             _AnimationPlayer.Play("fade_in");
+        }
+
+        public async void FadeOut()
+        {
+            _AnimationPlayer.Play("fade_out");
+            await ToSignal(_AnimationPlayer, "animation_finished");
+            EmitSignal(nameof(animation_finished));
+        }
+
+        public async void FadeIn()
+        {
+            _AnimationPlayer.Play("fade_in");
+            await ToSignal(_AnimationPlayer, "animation_finished");
+            EmitSignal(nameof(animation_finished));
         }
     }
 }
