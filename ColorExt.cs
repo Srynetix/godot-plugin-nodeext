@@ -15,5 +15,14 @@ namespace SxGD
         {
             return color.WithAlphaf(alpha / 255.0f);
         }
+
+        public static Color Rand()
+        {
+            return Color.Color8(
+                (byte)GD.RandRange(0, 255),
+                (byte)GD.RandRange(0, 255),
+                (byte)GD.RandRange(0, 255)
+            );
+        }
     }
 }

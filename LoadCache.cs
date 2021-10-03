@@ -35,6 +35,11 @@ namespace SxGD
             _Cache[name] = scene;
         }
 
+        public void StoreResource<T>(string name, string path) where T : Resource
+        {
+            _Cache[name] = GD.Load<T>(path);
+        }
+
         public bool HasScene(string name)
         {
             return _Cache.ContainsKey(name);
@@ -60,6 +65,16 @@ namespace SxGD
         {
             var name = typeof(T).Name;
             return LoadScene(name);
+        }
+
+        public Resource LoadResource(string name)
+        {
+            return (Resource)_Cache[name];
+        }
+
+        public T LoadResource<T>(string name)
+        {
+            return (T)_Cache[name];
         }
 
         public T InstantiateScene<T>(string name) where T : class
