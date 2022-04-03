@@ -13,6 +13,7 @@ namespace SxGD {
             set
             {
                 _Text = value;
+                _TextWithoutTags = StripTags(_Text);
                 UpdateEditorText();
             }
         }
@@ -28,6 +29,9 @@ namespace SxGD {
         }
         [Export]
         public bool AutoPlay = false;
+
+        [Signal]
+        public delegate void shown();
 
         [OnReady("Margin/RichTextLabel")]
         private RichTextLabel _Label;
@@ -54,8 +58,6 @@ namespace SxGD {
             // Reset text
             _Label.BbcodeText = "";
             _Timer.Connect("timeout", this, nameof(TimeOut));
-
-            _TextWithoutTags = StripTags(_Text);
 
             if (AutoPlay) {
                 FadeIn();
@@ -92,6 +94,8 @@ namespace SxGD {
             {
                 _Tween.InterpolateProperty(_Label, "modulate", Colors.White, Colors.White.WithAlphaf(0), 5);
                 _Tween.Start();
+
+                EmitSignal(nameof(shown));
             }
         }
 
