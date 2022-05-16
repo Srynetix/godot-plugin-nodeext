@@ -13,7 +13,7 @@ namespace SxGD {
 
         public override void _Ready()
         {
-            var PlayerScene = GD.Load<PackedScene>("res://addons/nodeext/AudioMultiStreamPlayer/AudioMultiStreamPlayer.tscn");
+            var PlayerScene = GD.Load<PackedScene>("res://addons/nodeext/Audio/AudioMultiStreamPlayer/AudioMultiStreamPlayer.tscn");
             _Player = PlayerScene.Instance<AudioMultiStreamPlayer>();
             _Player.MaxVoices = MaxVoices;
 
