@@ -12,6 +12,7 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [node name="DebugInfo" type="CanvasLayer"]
+pause_mode = 2
 layer = 99
 script = ExtResource( 2 )
 

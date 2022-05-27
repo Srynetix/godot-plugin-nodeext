@@ -22,7 +22,17 @@ namespace SxGD {
                 if (key.Pressed && key.Scancode == (int)KeyList.F12) {
                     _Label.Visible = !_Label.Visible;
                 }
+
+                else if (key.Pressed && key.Scancode == (int)KeyList.F5) {
+                    GetTree().ReloadCurrentScene();
+                }
+
+                else if (key.Pressed && key.Scancode == (int)KeyList.F2) {
+                    GetTree().Paused = !GetTree().Paused;
+                }
             }
+
+            @event.Dispose();
         }
 
         public override void _Process(float delta)
